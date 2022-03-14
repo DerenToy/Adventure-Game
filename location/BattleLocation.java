@@ -58,7 +58,7 @@ public abstract class BattleLocation extends Location {
     }
 
     private boolean whatToDo() {
-        System.out.println("Fight or Leave?\n\nPress 1 to fight or Press 0 to leave");
+        System.out.print("Fight or Leave?\n\nPress 1 to fight or Press 0 to leave");
         int whatToDo = input.nextInt();
 
         switch (whatToDo) {
@@ -106,19 +106,19 @@ public abstract class BattleLocation extends Location {
 
         Player player = super.getPlayer();
         for (int i = 0; i < numberObstacle; i++) {
-            while (0 < this.getPlayer().getHealth() && 0 < obstacle.getHealth()) {
+            while (0 < player.getHealth() && 0 < obstacle.getHealth()) {
                 int playerHealth = super.getPlayerHealth();
                 if (whichSideStart == 1) {
-                    System.out.println("Press A to attack or Press R to run away.");
+                    System.out.print("Press A to attack or Press R to run away. ");
                     keyboard = input.next().toUpperCase();
 
                     if (keyboard.equals("A")) {
                         System.out.println("You have attacked.");
-                        obstacleRemDamage = obstacle.getHealth() - this.getPlayer().getDamage();
+                        obstacleRemDamage = obstacle.getHealth() - player.getDamage();
                         obstacle.setHealth(obstacleRemDamage);
                     }
 
-                    System.out.println("If you want to run away, Press R.");
+                    System.out.print("If you want to run away, Press R.");
                     keyboard = input.next().toUpperCase();
                     if (keyboard.equals("R")) {
                         exitLoop = true;
@@ -137,7 +137,7 @@ public abstract class BattleLocation extends Location {
                         player.setHealth(playerRemDamage);
                         System.out.println(this.getObstacleName() + " has attacked you. It's your turn now.");
 
-                        System.out.println("Press A to attack or Press R to run away.");
+                        System.out.print("Press A to attack or Press R to run away. ");
                         keyboard = input.next().toUpperCase();
                         if (keyboard.equals("A")) {
                             obstacleRemDamage = this.getObstacleHealth() - player.getDamage();
@@ -169,7 +169,7 @@ public abstract class BattleLocation extends Location {
             if (obstacle.getHealth() <= 0) {
                 System.out.println("You have killed " + (i + 1) + ". " + obstacle.getName());
                 setWealthLoc();
-                System.out.println("Your Health: " + this.getPlayer().getHealth() + " Your Wealth: " + this.getPlayer().getWealth());
+                System.out.println("Your Health: " + player.getHealth() + " Your Wealth: " + player.getWealth());
                 System.out.println();
                 obstacle.setHealth(defaultObstacleHealth);
             }
